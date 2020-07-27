@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2020 Zhong Ruoyu. All rights reserved. -->
+
+<html>
+
+    <head>
+        <title>Sum Calculation</title>
+        <script src="summation.js"></script>
+        <style>
+            body {
+                margin: auto;
+                width: 50%;
+                max-width: 480px;
+                text-align: center;
+            }
+
+            input,
+            button {
+                padding: 0.5em;
+            }
+
+            input,
+            button#calculate {
+                width: 50%;
+            }
+
+            button.confirmation {
+                width: 36%;
+                display: none;
+            }
+
+            .operation {
+                font-family: monospace;
+            }
+
+            p#about {
+                font-style: italic;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Sum Calculation</h1>
+        <p id="about">By Zhong Ruoyu</p>
+        <hr />
+        <div id="operation">
+            <p id="p1">
+                <span class="operation" id="index1">1&nbsp;&nbsp;</span>&nbsp;<input class="operation" type="number"
+                    id="num1" />&nbsp;<button class="operation" id="add1" onclick="add(1)">
+                    +</button>&nbsp;<button class="operation" id="remove1" onclick="remove(1)">
+                    -
+                </button>
+            </p>
+            <p id="p2">
+                <span class="operation" id="index2">2&nbsp;&nbsp;</span>&nbsp;<input class="operation" type="number"
+                    id="num2" />&nbsp;<button class="operation" id="add2" onclick="add(2)">
+                    +</button>&nbsp;<button class="operation" id="remove2" onclick="remove(2)">
+                    -
+                </button>
+            </p>
+        </div>
+        <p>
+            <button id="calculate" id="calculate" onclick="execute()">Calculate Sum (Ctrl + C)</button>
+        </p>
+        <p><input type="text" id="result" value="0" disabled /></p>
+        <p>
+            <button class="confirmation" id="locate" onclick="locate()">Locate (Ctrl + L)</button>
+        </p>
+    </body>
+
+</html>
