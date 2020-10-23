@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define RANGE (long long) 100000000
+#define RANGE 100000000ll
 #define DIVISOR 65536
 
 int main(void)
