@@ -3,50 +3,31 @@
 // Memory Usage 6.8 MB (96.77%)
 
 #include <stdio.h>
-#define MAX 96
 
-typedef struct {
-    unsigned long local, domain;
-} emailhash;
-
-unsigned long djb2(char *str) {
+unsigned long getHash(char *str) {
     unsigned long hash = 5381UL;
-    char c;
-    while (c = *str++) hash = ((hash << 5) + hash) + c;
-    return hash;
-}
-
-void resolve(char **s, emailhash *t, int n) {
-    char local[MAX], domain[MAX], *p;
-    int x;
-    for (int i = 0; i < n; i++) {
-        p = s[i];
-        x = 0;
-        while (*p != '@' && *p != '+') {
-            if (*p != '.') local[x++] = *p;
-            p++;
-        }
-        local[x] = '\0';
-        while (*(p++) != '@') continue;
-        x = 0;
-        while (domain[x++] = *(++p)) continue;
-        t[i].local = djb2(local);
-        t[i].domain = djb2(domain);
+    while (*str != '@' && *str != '+') {
+        if (*str != '.') hash = ((hash << 5) + hash) + *str;
+        str++;
     }
-}
+    while (*str != '@') str++;
+    while (*str) {
+        hash = ((hash << 5) + hash) + *(str++);
+    }
+    return hash;
+}  // djb2 hash (for unique addresses)
 
-int locateUnique(emailhash *list, emailhash *cmp, int c) {
+int locateUnique(unsigned long *list, unsigned long *cmp, int c) {
     if (!c) return -1;
     for (int i = 0; i < c; i++) {
-        if ((list[i].local == cmp->local) &&
-            (list[i].domain == cmp->domain)) {
+        if (list[i] == *cmp) {
             return i;
         }
     }
     return -1;
 }
 
-int countUnique(emailhash *x, int c) {
+int countUnique(unsigned long *x, int c) {
     for (int i = 1; i < c; i++) {
         if ((locateUnique(x, x + i, i)) != -1) {
             x[i--] = x[--c];
@@ -56,9 +37,11 @@ int countUnique(emailhash *x, int c) {
 }
 
 int numUniqueEmails(char **words, int wordsSize) {
-    emailhash x[wordsSize];
-    resolve(words, x, wordsSize);
-    return countUnique(x, wordsSize);
+    unsigned long hash[wordsSize];
+    for (int i = 0; i < wordsSize; i++) {
+        hash[i] = getHash(words[i]);
+    }
+    return countUnique(hash, wordsSize);
 }
 
 int main(void) {
