@@ -40,7 +40,7 @@ class NQueens {
         return board;
     }
 
-    static inline int getLowestSetBitPosition(int n) {
+    static constexpr int getLowestSetBitPosition(int n) {
         int position = 0;
         while (n >>= 1) ++position;
         return position;
