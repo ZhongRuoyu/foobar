@@ -23,7 +23,7 @@ class NQueens {
             int availablePositions = ((1 << n) - 1) & (~(columns | diagonals1 | diagonals2));
             while (availablePositions) {
                 int columnPosition = availablePositions & (-availablePositions);  // get lowest set bit
-                availablePositions &= (availablePositions - 1);                   // clear lowest set bit
+                availablePositions &= ~columnPosition;                            // clear that bit
                 queens[row] = getLowestSetBitPosition(columnPosition);            // get current position
                 solve(solutions, queens, n, row + 1, columns | columnPosition, (diagonals1 | columnPosition) >> 1, (diagonals2 | columnPosition) << 1);
                 queens[row] = -1;
