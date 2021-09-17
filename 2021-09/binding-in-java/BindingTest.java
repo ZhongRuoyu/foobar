@@ -12,11 +12,11 @@ class Child extends Parent {
 
 class Binding {
     static void test(Parent obj) {
-        System.out.println("Static binding for class T");
+        System.out.println("Static binding for class Parent");
     }
 
     static void test(Child obj) {
-        System.out.println("Static binding for class T1");
+        System.out.println("Static binding for class Child");
     }
 
     static void testParent(Object obj, String name) {
