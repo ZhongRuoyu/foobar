@@ -32,24 +32,24 @@ class BindingTest {
     public static void main(String[] args) {
         Parent parent = new Parent();
         Child child = new Child();
-        Parent casted = new Child();
+        Parent child2 = new Child();
 
         Binding.testParent(parent, "parent");
         Binding.testChild(parent, "parent");
         Binding.testParent(child, "child");
         Binding.testChild(child, "child");
-        Binding.testParent(casted, "casted");
-        Binding.testChild(casted, "casted");
+        Binding.testParent(child2, "child2");
+        Binding.testChild(child2, "child2");
         System.out.println();
 
         parent.print();
         child.print();
-        casted.print();
+        child2.print();
         System.out.println();
 
         Binding.test(parent);
         Binding.test(child);
-        Binding.test(casted);
+        Binding.test(child2);
         System.out.println();
     }
 }
