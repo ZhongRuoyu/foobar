@@ -1,5 +1,3 @@
-/* Copyright (c) 2020 Zhong Ruoyu. All rights reserved.  */
-
 var numCount = 2;
 document.addEventListener("keydown", keyCheck);
 document.addEventListener("keydown", ctrlDetection);
